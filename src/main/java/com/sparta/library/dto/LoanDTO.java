@@ -1,5 +1,6 @@
 package com.sparta.library.dto;
 
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class LoanDTO {
     private Long id;
     private Long bookId;
