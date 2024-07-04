@@ -1,8 +1,5 @@
-package com.sparta.library.dto;
+package com.sparta.library.book.dto;
 
-import lombok.Builder;
-
-@Builder
 public record BookRequestDTO (
         Long id,
         String title,

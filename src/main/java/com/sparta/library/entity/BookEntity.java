@@ -1,4 +1,4 @@
-package com.sparta.library.book.entity;
+package com.sparta.library.entity;
 
 import com.sparta.library.book.dto.BookRequestDTO;
 import jakarta.persistence.*;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @SuperBuilder
 @Data
-@Table(name = "Book")
+@Table(name = "book")
 @EntityListeners(AuditingEntityListener.class)
 public class BookEntity {
     @Id

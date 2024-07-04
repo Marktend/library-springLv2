@@ -1,11 +1,9 @@
-package com.sparta.library.dto;
+package com.sparta.library.book.dto;
 
 import com.sparta.library.entity.BookEntity;
 import lombok.Builder;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 
 @Builder
 public record BookResponseDTO (

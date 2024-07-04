@@ -1,7 +1,7 @@
-package com.sparta.library.controller;
+package com.sparta.library.book.controller;
 
-import com.sparta.library.dto.BookRequestDTO;
-import com.sparta.library.service.BookService;
+import com.sparta.library.book.dto.BookRequestDTO;
+import com.sparta.library.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +20,19 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getBook(@PathVariable Long id){
+    public ResponseEntity getBookById(@PathVariable Long id){
 
         return ResponseEntity
                 .ok()
-                .body(bookService.getBook(id));
+                .body(bookService.getBookById(id));
+    }
+
+    @GetMapping("/{title}")
+    public ResponseEntity getBookByTitle(@PathVariable String title){
+
+        return ResponseEntity
+                .ok()
+                .body(bookService.getBookByTitle(title));
     }
 
     @PostMapping

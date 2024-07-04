@@ -1,9 +1,9 @@
-package com.sparta.library.service;
+package com.sparta.library.book.service;
 
-import com.sparta.library.dto.BookRequestDTO;
-import com.sparta.library.dto.BookResponseDTO;
+import com.sparta.library.book.dto.BookRequestDTO;
+import com.sparta.library.book.dto.BookResponseDTO;
 import com.sparta.library.entity.BookEntity;
-import com.sparta.library.repository.BookRepository;
+import com.sparta.library.book.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class BookServiceImpl implements BookService{
 
     private final BookRepository bookRepository;
-
 
     @Override
     public BookResponseDTO saveBook(BookRequestDTO bookRequestDTO) {
@@ -41,7 +40,7 @@ public class BookServiceImpl implements BookService{
     public List<BookResponseDTO> getBooklist() {
         // 등록된 도서 전체를 조회, 등록일 기준 오름차순
 
-        List<BookResponseDTO> list = bookRepository.findAllOrderByRegistrationDateASC()
+        List<BookResponseDTO> list = bookRepository.findAllByOrderByRegistrationDate()
                 .stream()
                 .map(BookResponseDTO::from)
                 .collect(Collectors.toList());
@@ -50,10 +49,18 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookResponseDTO getBook(Long id) {
+    public BookResponseDTO getBookById(Long id) {
         // 선택한 도서의 정보를 조회
 
         return bookRepository.findById(id)
+                .map(BookResponseDTO::from)
+                .orElseThrow(()->
+                        new IllegalArgumentException("error"));
+    }
+
+    @Override
+    public BookResponseDTO getBookByTitle(String title) {
+        return bookRepository.findAllByTitle(title)
                 .map(BookResponseDTO::from)
                 .orElseThrow(()->
                         new IllegalArgumentException("error"));

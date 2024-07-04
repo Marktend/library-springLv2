@@ -1,7 +1,7 @@
-package com.sparta.library.service;
+package com.sparta.library.book.service;
 
-import com.sparta.library.dto.BookRequestDTO;
-import com.sparta.library.dto.BookResponseDTO;
+import com.sparta.library.book.dto.BookRequestDTO;
+import com.sparta.library.book.dto.BookResponseDTO;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ public interface BookService {
 
     List<BookResponseDTO> getBooklist();
 
-    BookResponseDTO getBook(Long id);
-
+    BookResponseDTO getBookById(Long id);
+    BookResponseDTO getBookByTitle(String title);
 }
