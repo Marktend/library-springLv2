@@ -11,5 +11,5 @@ public interface BookService {
     List<BookResponseDTO> getBooklist();
 
     BookResponseDTO getBookById(Long id);
-    BookResponseDTO getBookByTitle(String title);
+//    BookResponseDTO getBookByTitle(String title);
 }

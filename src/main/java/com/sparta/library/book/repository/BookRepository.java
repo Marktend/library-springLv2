@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
     Optional<BookEntity> findFirstByTitleAndAuthorAndLanguageAndPublisherOrderByRegistrationDateDesc(String title, String author, String language, String publisher);
     List<BookEntity> findAllByOrderByRegistrationDate();
-    Optional<BookEntity> findAllByTitle(String title);
+//    Optional<BookEntity> findAllByTitle(String title);
 }
