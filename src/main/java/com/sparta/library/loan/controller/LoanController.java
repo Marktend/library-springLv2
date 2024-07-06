@@ -35,11 +35,11 @@ public class LoanController {
                 .body(loanService.loanBook(loanRequestDTO));
     }
 
-    @PutMapping("/return/{bookid}")
-    public ResponseEntity returnBook(@PathVariable Long bookid) {
+    @PutMapping("/return/{bookId}")
+    public ResponseEntity returnBook(@PathVariable Long bookId) {
         // 책 반납
         return ResponseEntity
                 .ok()
-                .body(loanService.returnBook(bookid));
+                .body(loanService.returnBook(bookId));
     }
 }
