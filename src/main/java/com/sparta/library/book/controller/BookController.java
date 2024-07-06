@@ -27,14 +27,6 @@ public class BookController {
                 .body(bookService.getBookById(id));
     }
 
-//    @GetMapping("/{title}")
-//    public ResponseEntity getBookByTitle(@PathVariable String title){
-//
-//        return ResponseEntity
-//                .ok()
-//                .body(bookService.getBookByTitle(title));
-//    }
-
     @PostMapping
     public ResponseEntity saveBook(@RequestBody BookRequestDTO bookRequestDTO){
         return ResponseEntity

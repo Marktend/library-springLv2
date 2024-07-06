@@ -54,15 +54,6 @@ public class BookServiceImpl implements BookService{
 
         return bookRepository.findById(id)
                 .map(BookResponseDTO::from)
-                .orElseThrow(()->
-                        new IllegalArgumentException("error"));
+                .orElseThrow(()-> new IllegalArgumentException("error"));
     }
-
-//    @Override
-//    public BookResponseDTO getBookByTitle(String title) {
-//        return bookRepository.findAllByTitle(title)
-//                .map(BookResponseDTO::from)
-//                .orElseThrow(()->
-//                        new IllegalArgumentException("error"));
-//    }
 }
