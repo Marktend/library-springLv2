@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface LoanRepository extends JpaRepository<LoanEntity, Long> {
-    Optional<LoanEntity> findFirstByBookIdAndMemberId(Long bookId, Long MemberId);
+    Optional<LoanEntity> findFirstByBookIdAndMemberIdAndReturnedFalse(Long bookId, Long MemberId);
 
     Optional<LoanEntity> findFirstByBookIdAndReturned(Long bookId, Boolean returned);
 

@@ -6,8 +6,10 @@ import com.sparta.library.loan.dto.LoanRequestDTO;
 import com.sparta.library.loan.dto.LoanResponseDTO;
 import com.sparta.library.loan.repository.LoanRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -39,7 +41,7 @@ public class LoanServiceImpl implements LoanService {
         LoanEntity loan = LoanEntity.from(loanRequestDTO);
         try {
 
-            // 대여상태 정리
+            // 대여상태
             // returned == true  반납완료
             // returned == false 미반납
 
@@ -59,6 +61,14 @@ public class LoanServiceImpl implements LoanService {
                 throw new IllegalArgumentException("대여 불가능 - 해당 책은 이미 대여중이다");
             }
 
+            // 대여 날짜가 지정이 안되어있는 경우 오늘 날짜로 입력
+            if (loan.getLoanDate() == null) {
+                loan.setLoanDate(LocalDate.now());
+            }
+
+            // 대여 시 returned(반납상태)는 default로 false 지정
+            loan.setReturned(false);
+
             // 대여 가능 상태면 save함
             loanRepository.save(loan);
 
@@ -68,7 +78,7 @@ public class LoanServiceImpl implements LoanService {
         }
 
         return loanRepository
-                .findFirstByBookIdAndMemberId(loan.getBookId(), loan.getMemberId())
+                .findFirstByBookIdAndMemberIdAndReturnedFalse(loan.getBookId(), loan.getMemberId())
                 .map(LoanResponseDTO::from)
                 .orElseThrow(() -> new IllegalArgumentException("생성 실패"));
     }
